@@ -1,5 +1,4 @@
 CREATE DATABASE InterviewBridge;
-
 USE InterviewBridge;
 
 CREATE TABLE students (
