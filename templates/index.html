@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InterviewBridge | Student Home</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="logo">IB</div>
+            <span>InterviewBridge</span>
+        </div>
+
+        <p class="menu-heading">MENU</p>
+
+        <nav class="menu">
+
+            <a href="/" class="menu-item active">
+                <span>⌂</span>
+                <span class="menu-label">Home</span>
+            </a>
+
+            <a href="#feedback" class="menu-item">
+                <span>◷</span>
+                <span class="menu-label">Past Interview Feedback</span>
+            </a>
+
+            <a href="#resume" class="menu-item">
+                <span>▤</span>
+                <span class="menu-label">AI Resume Review</span>
+            </a>
+
+            <a href="#progress" class="menu-item">
+                <span>↗</span>
+                <span class="menu-label">Student Progress</span>
+            </a>
+
+        </nav>
+
+        
+<!-- LOGIN AND SIGNUP AT BOTTOM LEFT -->
+
+<div class="sidebar-auth">
+    <a href="{{ url_for('login') }}" class="sidebar-login">
+        Log In
+    </a>
+
+    <a href="{{ url_for('signup') }}" class="sidebar-signup">
+        Sign Up
+    </a>
+</div>
+
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+        <header class="topbar">
+
+            <p class="breadcrumb">Student Portal / Home</p>
+
+            <div class="top-profile">
+                <span class="status-dot"></span>
+                Student Dashboard
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME SECTION -->
+        <section class="welcome">
+
+            <p class="small-title">YOUR INTERVIEW SPACE</p>
+
+            <h1>
+                Welcome to <span>InterviewBridge!</span>
+            </h1>
+
+            <p class="welcome-text">
+                Prepare for interviews, connect with interviewers,
+                and take the next step toward your dream career.
+            </p>
+
+        </section>
+
+
+        <!-- FIRST BOX: GOOGLE MEET INFORMATION -->
+        <section class="content-card meet-card">
+
+            <div class="card-content">
+
+                <div class="meet-heading">
+                    <div class="card-icon blue-icon">↗</div>
+
+                    <div>
+                        <h2>Google Meet Information</h2>
+                        <p class="meet-description">
+                            Your online interview details are displayed below.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="meet-info">
+
+                    <p class="field-label">Start At</p>
+
+                    <p class="start-time">
+
+                        {% if upcoming_interview and upcoming_interview.scheduled_at %}
+                            {{ upcoming_interview.scheduled_at.strftime('%d %B %Y, %I:%M %p') }}
+                        {% else %}
+                            Not scheduled yet
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                {% if upcoming_interview and upcoming_interview.meet_link %}
+                    <a href="{{ upcoming_interview.meet_link }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="primary-button">
+                        Join Google Meet →
+                    </a>
+                {% else %}
+                    <a href="https://meet.google.com/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="primary-button">
+                        Join Google Meet →
+                    </a>
+                {% endif %}
+
+                <!-- EMPTY SPACE BELOW THE BUTTON -->
+                <div class="empty-space"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECOND BOX: INTERVIEWER INFORMATION -->
+        <section class="content-card" id="feedback">
+
+            <div class="card-icon purple-icon">◷</div>
+
+            <div class="card-content">
+
+                <h2>Interviewer Information</h2>
+
+                {% if interviewer and interviewer.name %}
+
+                    <div class="info-box">
+
+                        <p>
+                            <strong>Name:</strong>
+                            {{ interviewer.name }}
+                        </p>
+
+                        <p>
+                            <strong>Company:</strong>
+                            {{ interviewer.company or 'Not provided' }}
+                        </p>
+
+                        <p>
+                            <strong>Role:</strong>
+                            {{ interviewer.role or 'Not provided' }}
+                        </p>
+
+                    </div>
+
+                {% else %}
+
+                    <p class="section-description">
+                        Interviewer information will appear here
+                        when an interviewer is assigned.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- THIRD BOX: AI RESUME REVIEW -->
+        <section class="content-card" id="resume">
+
+            <div class="card-icon violet-icon">▤</div>
+
+            <div class="card-content">
+
+                <h2>AI-Based Resume Review</h2>
+
+                <p class="section-description">
+                    Review your resume and identify areas for improvement
+                    before your next interview.
+                </p>
+
+                <a href="#resume" class="secondary-button">
+                    Open Resume Review →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOURTH BOX: STUDENT PROGRESS -->
+        <section class="content-card" id="progress">
+
+            <div class="card-icon blue-icon">↗</div>
+
+            <div class="card-content">
+
+                <h2>Student Progress</h2>
+
+                <p class="section-description">
+                    Track your interview preparation and monitor
+                    your performance over time.
+                </p>
+
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <small>Progress information will appear here.</small>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 InterviewBridge | Student Portal
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Career Guide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+    <main class="auth-container">
+        <section class="auth-card">
+            <a href="/" class="brand">Career<span>Guide</span></a>
+
+            <h1>Welcome Back!</h1>
+            <p class="subtitle">Continue your career journey.</p>
+
+            {% if request.args.get('registered') %}
+                <p class="message success">Account created! Please log in.</p>
+            {% endif %}
+
+            {% if error %}
+                <p class="message error">{{ error }}</p>
+            {% endif %}
+
+            <form action="{{ url_for('login') }}" method="POST">
+                <label for="email">Email Address</label>
+                <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+
+                <label for="password">Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit">Log In</button>
+            </form>
+
+            <p class="switch">
+                Don't have an account?
+                <a href="{{ url_for('signup') }}">Sign Up</a>
+            </p>
+
+            <a href="/" class="back-link">← Back to Home</a>
+        </section>
+    </main>
+</body>
+</html>
