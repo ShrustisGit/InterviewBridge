@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | InterviewBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="student-profile-page">
+
+<nav class="profile-navbar">
+    <a href="{{ url_for('home') }}" class="profile-brand">
+        <span class="profile-logo">IB</span>
+        InterviewBridge
+    </a>
+
+    <div class="profile-nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+    </div>
+</nav>
+
+<main class="profile-container">
+
+    <div class="profile-heading">
+        <p class="profile-eyebrow">STUDENT ACCOUNT</p>
+        <h1>My Profile</h1>
+        <p>View your personal and educational information.</p>
+    </div>
+
+    <!-- STUDENT SUMMARY -->
+    <section class="profile-summary">
+        <div class="large-avatar">
+            {{ (student.name or 'S')[0]|upper }}
+        </div>
+
+        <div class="summary-details">
+            <h2>{{ student.name or 'Student' }}</h2>
+            <p>{{ student.email or 'Email not provided' }}</p>
+            <span class="account-badge">Student Account</span>
+        </div>
+    </section>
+
+    <!-- PERSONAL INFORMATION -->
+    <section class="profile-card">
+        <div class="profile-card-heading">
+            <div class="section-icon">👤</div>
+            <div>
+                <h2>Personal Information</h2>
+                <p>Your registered personal details</p>
+            </div>
+        </div>
+
+        <div class="profile-grid">
+
+            <div class="profile-field">
+                <span>Full Name</span>
+                <strong>{{ student.name or 'Not provided' }}</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Email Address</span>
+                <strong>{{ student.email or 'Not provided' }}</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Mobile Number</span>
+                <strong>{{ student.phone or 'Not provided' }}</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Gender</span>
+                <strong>{{ student.gender or 'Not provided' }}</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Email Verification</span>
+                {% if student.email_verified %}
+                    <strong class="verified">✓ Verified</strong>
+                {% else %}
+                    <strong class="not-verified">Not verified</strong>
+                {% endif %}
+            </div>
+
+            <div class="profile-field">
+                <span>Mobile Verification</span>
+                {% if student.phone_verified %}
+                    <strong class="verified">✓ Verified</strong>
+                {% else %}
+                    <strong class="not-verified">Not verified</strong>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+
+   
+<!-- EDUCATION INFORMATION -->
+<section class="profile-card">
+    <div class="profile-card-heading">
+        <div class="section-icon purple-section-icon">🎓</div>
+        <div>
+            <h2>Educational Information</h2>
+            <p>Your academic background</p>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+
+        <div class="profile-field">
+            <span>Enrollment Number</span>
+            <strong>{{ student.enrollment_no or 'Not provided' }}</strong>
+        </div>
+
+        <!-- NEW: COLLEGE NAME -->
+        <div class="profile-field">
+            <span>College Name</span>
+            <strong>{{ student.college_name or 'Not provided' }}</strong>
+        </div>
+
+        <div class="profile-field">
+            <span>Degree</span>
+            <strong>{{ student.degree or 'Not provided' }}</strong>
+        </div>
+
+        <div class="profile-field">
+            <span>Branch / Specialization</span>
+            <strong>{{ student.branch or 'Not provided' }}</strong>
+        </div>
+
+
+<div class="profile-field">
+    <span>College ID Photo</span>
+
+    {% if student.college_id_photo %}
+        <img
+            src="{{ url_for(
+                'static',
+                filename='uploads/college_ids/' ~ student.college_id_photo
+            ) }}"
+            alt="College ID Photo"
+            class="college-id-preview"
+        >
+    {% else %}
+        <strong>Not uploaded</strong>
+    {% endif %}
+</div>
+
+
+
+
+    </div>
+</section>
+
+
+    <!-- ADDRESS INFORMATION -->
+    <section class="profile-card">
+        <div class="profile-card-heading">
+            <div class="section-icon blue-section-icon">📍</div>
+            <div>
+                <h2>Address Information</h2>
+                <p>Your registered location details</p>
+            </div>
+        </div>
+
+        <div class="profile-grid">
+
+            <div class="profile-field">
+                <span>Country</span>
+                <strong>{{ student.country or 'Not provided' }}</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>State</span>
+                <strong>{{ student.state or 'Not provided' }}</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>City</span>
+                <strong>{{ student.city or 'Not provided' }}</strong>
+            </div>
+
+            <div class="profile-field full-width">
+                <span>Full Address</span>
+                <strong>{{ student.address or 'Not provided' }}</strong>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACCOUNT INFORMATION -->
+    <section class="profile-card">
+        <div class="profile-card-heading">
+            <div class="section-icon">📋</div>
+            <div>
+                <h2>Account Information</h2>
+                <p>Details about your account</p>
+            </div>
+        </div>
+
+        <div class="profile-grid">
+            <div class="profile-field">
+                <span>Student ID</span>
+                <strong>{{ student.student_id }}</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Registered On</span>
+                <strong>
+                    {{ student.created_at or 'Not available' }}
+                </strong>
+            </div>
+        </div>
+    </section>
+
+    <div class="profile-actions">
+        <a href="{{ url_for('home') }}" class="profile-home-button">
+            Back to Home
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="profile-logout-button">
+            Logout
+        </a>
+    </div>
+
+</main>
+
+<footer class="profile-footer">
+    © 2026 InterviewBridge. All rights reserved.
+</footer>
+
+</body>
+</html>

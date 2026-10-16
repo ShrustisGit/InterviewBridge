@@ -52,15 +52,39 @@
         
 <!-- LOGIN AND SIGNUP AT BOTTOM LEFT -->
 
+<!-- SIDEBAR PROFILE / LOGIN SIGNUP -->
+{% if session.get('student_id') %}
+
+<div class="sidebar-profile">
+    <div class="profile-avatar">
+        {{ session.get('student_name', 'S')[0]|upper }}
+    </div>
+
+    <div class="profile-details">
+        <h4>{{ session.get('student_name', 'Student') }}</h4>
+        <p>Student Account</p>
+    </div>
+
+    <a href="{{ url_for('profile') }}"
+   class="profile-menu"
+   title="View Profile">
+    ›
+</a>
+</div>
+
+{% else %}
+
 <div class="sidebar-auth">
     <a href="{{ url_for('login') }}" class="sidebar-login">
-        Log In
+        Login
     </a>
 
     <a href="{{ url_for('signup') }}" class="sidebar-signup">
         Sign Up
     </a>
 </div>
+
+{% endif %}
 
 
     </aside>
