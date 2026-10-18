@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Choose Account | InterviewBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="account-type-body">
+
+    <main class="account-choice-page">
+
+        <!-- Back to Home -->
+        <a href="{{ url_for('home') }}" class="back-link">
+            <span aria-hidden="true">←</span>
+            Back to Home
+        </a>
+
+        <!-- Heading -->
+        <header class="account-heading">
+
+            <div class="account-brand">
+                <span class="brand-icon" aria-hidden="true">IB</span>
+                <span>InterviewBridge</span>
+            </div>
+
+            <p class="account-eyebrow">
+                YOUR CAREER JOURNEY STARTS HERE
+            </p>
+
+            <h1>Welcome to InterviewBridge</h1>
+
+            <p class="account-subtitle">
+                Choose your account type to get started.
+                Your next opportunity begins here.
+            </p>
+
+        </header>
+
+        <!-- Account Type Options -->
+        <section class="account-choice-grid"
+                 aria-label="Choose your account type">
+
+            <!-- STUDENT: GO DIRECTLY TO LOGIN -->
+            <a href="{{ url_for('login') }}"
+               class="account-choice-card student-card">
+
+                <div class="account-icon student-icon"
+                     aria-hidden="true">
+                    🎓
+                </div>
+
+                <span class="account-role">FOR LEARNERS</span>
+
+                <h2>I'm a Student</h2>
+
+                <p>
+                    Prepare for interviews, practise interview questions,
+                    improve your communication skills, and build
+                    confidence for placements.
+                </p>
+
+                <span class="account-card-button">
+                    Continue as Student
+                    <span aria-hidden="true">→</span>
+                </span>
+
+            </a>
+
+           
+            
+<!-- MENTOR -->
+<a href="{{ url_for('mentor_login') }}"
+   class="account-choice-card mentor-card">
+
+    <div class="account-icon mentor-icon"
+         aria-hidden="true">
+        👨‍🏫
+    </div>
+
+    <span class="account-role">FOR PROFESSIONALS</span>
+
+    <h2>I'm a Mentor</h2>
+
+    <p>
+        Share your professional knowledge, guide students,
+        provide career insights, and help aspiring candidates
+        prepare for successful careers.
+    </p>
+
+    <span class="account-card-button">
+        Continue as Mentor
+        <span aria-hidden="true">→</span>
+    </span>
+
+</a>
+
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="account-footer">
+            <p>Learn. Practise. Grow.</p>
+            <span>
+                Your journey to better interviews starts here.
+            </span>
+        </footer>
+
+    </main>
+
+</body>
+</html>

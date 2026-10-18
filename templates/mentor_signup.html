@@ -1,0 +1,533 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mentor Sign Up | InterviewBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="signup-page mentor-signup-page">
+
+<nav class="signup-navbar">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About Us</a>
+</nav>
+
+<main class="signup-main">
+    <section class="signup-card mentor-signup-card">
+
+        <a href="{{ url_for('home') }}" class="signup-brand">
+            <span class="signup-logo">IB</span>
+            InterviewBridge
+        </a>
+
+        <h1>Create Mentor Account</h1>
+
+        <p class="signup-subtitle">
+            Share your experience, guide students, and help them grow
+            professionally.
+        </p>
+
+        <div class="step-indicator">
+            <div class="step active" id="indicator1">1. Verify</div>
+            <div class="step" id="indicator2">2. Profile</div>
+            <div class="step" id="indicator3">3. Address</div>
+        </div>
+
+        <div id="message"
+             class="signup-message"
+             role="status"
+             aria-live="polite"></div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, msg in messages %}
+                <div class="signup-message {{ category }}">
+                    {{ msg }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
+        <form id="mentorSignupForm"
+              action="{{ url_for('mentor_signup') }}"
+              method="POST">
+
+            <!-- STEP 1: CONTACT VERIFICATION -->
+            <section class="step-page" id="page1">
+
+                <h2>Verify Contact Details</h2>
+
+                <label for="email">Professional Email *</label>
+
+                <div class="verify-row">
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           placeholder="you@example.com"
+                           autocomplete="email"
+                           required>
+
+                    <button type="button"
+                            class="verify-button"
+                            onclick="sendCode('email', this)">
+                        Send Code
+                    </button>
+                </div>
+
+                <div id="emailOtpArea" hidden>
+                    <label for="emailOtp">Email OTP</label>
+
+                    <div class="verify-row">
+                        <input type="text"
+                               id="emailOtp"
+                               inputmode="numeric"
+                               maxlength="6"
+                               placeholder="6-digit code">
+
+                        <button type="button"
+                                class="verify-button"
+                                onclick="verifyCode('email')">
+                            Verify
+                        </button>
+                    </div>
+                </div>
+
+                <p id="emailStatus" class="verification-status"></p>
+
+                <label for="phone">Mobile Number *</label>
+
+                <input type="tel"
+                       id="phone"
+                       name="phone"
+                       placeholder="+919876543210"
+                       autocomplete="tel"
+                       required>
+
+                <small>Include your country code.</small>
+
+                <button type="button"
+                        class="verify-button mobile-send"
+                        onclick="sendCode('mobile', this)">
+                    Send Mobile OTP
+                </button>
+
+                <div id="mobileOtpArea" hidden>
+                    <label for="mobileOtp">Mobile OTP</label>
+
+                    <div class="verify-row">
+                        <input type="text"
+                               id="mobileOtp"
+                               inputmode="numeric"
+                               maxlength="6"
+                               placeholder="6-digit code">
+
+                        <button type="button"
+                                class="verify-button"
+                                onclick="verifyCode('mobile')">
+                            Verify
+                        </button>
+                    </div>
+                </div>
+
+                <p id="mobileStatus" class="verification-status"></p>
+
+                <p class="signup-login">
+                    Already have a mentor account?
+                    <a href="{{ url_for('mentor_login') }}">Log In</a>
+                </p>
+
+                <div class="form-actions">
+                    <a href="{{ url_for('home') }}"
+                       class="back-button">Home</a>
+
+                    <button type="button"
+                            class="next-button"
+                            onclick="goToStep(2)">
+                        Next →
+                    </button>
+                </div>
+            </section>
+
+            <!-- STEP 2: PROFESSIONAL PROFILE -->
+            <section class="step-page" id="page2" hidden>
+
+                <h2>Professional Information</h2>
+
+                <label for="name">Full Name *</label>
+                <input type="text"
+                       id="name"
+                       name="name"
+                       autocomplete="name"
+                       required>
+
+                <label for="company_name">Company / Organization *</label>
+                <input type="text"
+                       id="company_name"
+                       name="company_name"
+                       placeholder="e.g. ABC Technologies"
+                       required>
+
+                <label for="role">Current Job Role *</label>
+                <input type="text"
+                       id="role"
+                       name="role"
+                       placeholder="e.g. Software Engineer"
+                       required>
+
+                <label for="registration_no">
+                    Professional Registration Number
+                </label>
+                <input type="text"
+                       id="registration_no"
+                       name="registration_no"
+                       placeholder="Enter if applicable">
+
+                <label for="about">Professional Summary *</label>
+                <textarea id="about"
+                          name="about"
+                          rows="4"
+                          placeholder="Describe your experience, skills, and expertise."
+                          required></textarea>
+
+                <label for="password">Create Password *</label>
+                <input type="password"
+                       id="password"
+                       name="password"
+                       minlength="8"
+                       autocomplete="new-password"
+                       required>
+
+                <label for="confirm_password">Confirm Password *</label>
+                <input type="password"
+                       id="confirm_password"
+                       name="confirm_password"
+                       minlength="8"
+                       autocomplete="new-password"
+                       required>
+
+                <div class="form-actions">
+                    <button type="button"
+                            class="back-button"
+                            onclick="goToStep(1)">
+                        ← Back
+                    </button>
+
+                    <button type="button"
+                            class="next-button"
+                            onclick="goToStep(3)">
+                        Next →
+                    </button>
+                </div>
+            </section>
+
+            <!-- STEP 3: ADDRESS -->
+            <section class="step-page" id="page3" hidden>
+
+                <h2>Location Information</h2>
+
+                <label for="country">Country *</label>
+                <input type="text"
+                       id="country"
+                       name="country"
+                       autocomplete="country-name"
+                       required>
+
+                <label for="state">State *</label>
+                <input type="text"
+                       id="state"
+                       name="state"
+                       required>
+
+                <label for="city">City *</label>
+                <input type="text"
+                       id="city"
+                       name="city"
+                       autocomplete="address-level2"
+                       required>
+
+                <p class="privacy-note">
+                    Your professional information helps students understand
+                    your expertise and background. Keep your password private.
+                </p>
+
+                <div class="form-actions">
+                    <button type="button"
+                            class="back-button"
+                            onclick="goToStep(2)">
+                        ← Back
+                    </button>
+
+                    <button type="submit"
+                            class="next-button"
+                            id="submitButton">
+                        Create Mentor Account
+                    </button>
+                </div>
+            </section>
+
+        </form>
+    </section>
+</main>
+
+<script>
+let currentStep = 1;
+let emailVerified = false;
+let mobileVerified = false;
+
+const form = document.getElementById("mentorSignupForm");
+const messageBox = document.getElementById("message");
+
+function showMessage(text, type = "error") {
+    messageBox.textContent = text || "";
+    messageBox.className = "signup-message " + type;
+    messageBox.style.display = text ? "block" : "none";
+}
+
+function setStatus(kind, text, success = false) {
+    const element = document.getElementById(kind + "Status");
+
+    element.textContent = text;
+    element.className =
+        "verification-status " + (success ? "verified" : "");
+}
+
+function contactValue(kind) {
+    const id = kind === "email" ? "email" : "phone";
+    return document.getElementById(id).value.trim();
+}
+
+async function postForm(url, values) {
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams(values)
+    });
+
+    let data;
+
+    try {
+        data = await response.json();
+    } catch {
+        data = { message: "Unexpected server response." };
+    }
+
+    return { response, data };
+}
+
+async function sendCode(kind, button) {
+    const value = contactValue(kind);
+
+    if (!value) {
+        showMessage(
+            "Enter your " +
+            (kind === "email" ? "email address." : "mobile number.")
+        );
+        return;
+    }
+
+    if (
+        kind === "email" &&
+        !document.getElementById("email").checkValidity()
+    ) {
+        showMessage("Enter a valid email address.");
+        return;
+    }
+
+    button.disabled = true;
+    const originalText = button.textContent;
+    button.textContent = "Sending...";
+
+    try {
+        const url = kind === "email"
+            ? "/mentor/send-email-otp"
+            : "/mentor/send-mobile-otp";
+
+        const field = kind === "email" ? "email" : "phone";
+
+        const { response, data } = await postForm(url, {
+            [field]: value
+        });
+
+        showMessage(
+            data.message || "OTP request completed.",
+            response.ok ? "success" : "error"
+        );
+
+        if (response.ok) {
+            document.getElementById(
+                kind === "email" ? "emailOtpArea" : "mobileOtpArea"
+            ).hidden = false;
+
+            if (kind === "email") {
+                emailVerified = false;
+            } else {
+                mobileVerified = false;
+            }
+
+            setStatus(kind, "Verification pending.");
+        }
+    } catch (error) {
+        showMessage("Unable to contact the server. Please try again.");
+    } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+    }
+}
+
+async function verifyCode(kind) {
+    const value = contactValue(kind);
+
+    const otpId = kind === "email" ? "emailOtp" : "mobileOtp";
+    const otp = document.getElementById(otpId).value.trim();
+
+    if (!/^\d{6}$/.test(otp)) {
+        showMessage("Enter the 6-digit OTP.");
+        return;
+    }
+
+    try {
+        const url = kind === "email"
+            ? "/mentor/verify-email-otp"
+            : "/mentor/verify-mobile-otp";
+
+        const field = kind === "email" ? "email" : "phone";
+
+        const { response, data } = await postForm(url, {
+            [field]: value,
+            otp: otp
+        });
+
+        showMessage(
+            data.message || "Verification request completed.",
+            response.ok ? "success" : "error"
+        );
+
+        if (response.ok) {
+            if (kind === "email") {
+                emailVerified = true;
+            } else {
+                mobileVerified = true;
+            }
+
+            setStatus(kind, "✓ Verified successfully", true);
+        }
+    } catch (error) {
+        showMessage("Could not verify the code. Please try again.");
+    }
+}
+
+document.getElementById("email").addEventListener("input", () => {
+    emailVerified = false;
+    setStatus("email", "Email not verified.");
+});
+
+document.getElementById("phone").addEventListener("input", () => {
+    mobileVerified = false;
+    setStatus("mobile", "Mobile not verified.");
+});
+
+function goToStep(step) {
+    showMessage("");
+
+    const currentPage = document.getElementById("page" + currentStep);
+
+    for (const field of currentPage.querySelectorAll("[required]")) {
+        if (!field.checkValidity()) {
+            field.reportValidity();
+            return;
+        }
+    }
+
+    if (currentStep === 1 && step === 2) {
+        if (!emailVerified || !mobileVerified) {
+            showMessage("Verify your email and mobile number first.");
+            return;
+        }
+    }
+
+    if (currentStep === 2 && step === 3) {
+        const password = document.getElementById("password").value;
+        const confirm = document.getElementById("confirm_password").value;
+
+        if (password.length < 8) {
+            showMessage("Password must contain at least 8 characters.");
+            return;
+        }
+
+        if (password !== confirm) {
+            showMessage("Passwords do not match.");
+            return;
+        }
+    }
+
+    currentPage.hidden = true;
+    document.getElementById("page" + step).hidden = false;
+
+    currentStep = step;
+
+    for (let i = 1; i <= 3; i++) {
+        document.getElementById("indicator" + i)
+            .classList.toggle("active", i <= step);
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+form.addEventListener("submit", function(event) {
+    if (currentStep !== 3) {
+        event.preventDefault();
+        return;
+    }
+
+    if (!emailVerified || !mobileVerified) {
+        event.preventDefault();
+        showMessage("Verify your email and mobile number first.");
+        return;
+    }
+
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirm_password").value;
+
+    if (password !== confirm) {
+        event.preventDefault();
+        showMessage("Passwords do not match.");
+        return;
+    }
+
+    for (const field of form.querySelectorAll("[required]")) {
+        if (!field.checkValidity()) {
+            event.preventDefault();
+
+            const page = field.closest(".step-page");
+
+            if (page) {
+                document.getElementById("page" + currentStep).hidden = true;
+                page.hidden = false;
+                currentStep = Number(page.id.replace("page", ""));
+
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById("indicator" + i)
+                        .classList.toggle("active", i <= currentStep);
+                }
+            }
+
+            field.reportValidity();
+            return;
+        }
+    }
+
+    const submitButton = document.getElementById("submitButton");
+    submitButton.disabled = true;
+    submitButton.textContent = "Creating Account...";
+});
+</script>
+
+</body>
+</html>
+```

@@ -1630,3 +1630,833 @@ footer {
         box-sizing: border-box;
     }
 }
+
+
+
+
+
+/* ===== ACCOUNT TYPE PAGE ===== */
+
+.account-type-body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #172554;
+    background:
+        radial-gradient(circle at 10% 10%,
+            rgba(99, 102, 241, 0.12), transparent 30%),
+        radial-gradient(circle at 90% 85%,
+            rgba(124, 58, 237, 0.10), transparent 30%),
+        #f8faff;
+}
+
+.account-choice-page {
+    width: min(1000px, 90%);
+    margin: 0 auto;
+    padding: 28px 0 35px;
+}
+
+.account-type-body .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
+    color: #5145cd;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.account-type-body .back-link:hover {
+    color: #312e81;
+}
+
+.account-heading {
+    max-width: 680px;
+    margin: 0 auto 38px;
+    text-align: center;
+}
+
+.account-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    font-size: 19px;
+    font-weight: 800;
+    color: #172554;
+}
+
+.brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3b82f6, #7c3aed);
+    font-size: 15px;
+    letter-spacing: -1px;
+}
+
+.account-eyebrow {
+    margin: 0 0 12px;
+    color: #6d5ce8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.account-heading h1 {
+    margin: 0 0 15px;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #172554;
+}
+
+.account-subtitle {
+    max-width: 520px;
+    margin: 0 auto;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Cards */
+
+.account-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.account-choice-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 32px;
+    border: 1px solid #e0e7ff;
+    border-radius: 22px;
+    background: #ffffff;
+    color: #172554;
+    text-decoration: none;
+    box-shadow: 0 10px 35px rgba(39, 49, 105, 0.06);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.account-choice-card:hover {
+    transform: translateY(-6px);
+    border-color: #8175f2;
+    box-shadow: 0 18px 40px rgba(79, 70, 229, 0.13);
+}
+
+.account-choice-card:focus-visible {
+    outline: 3px solid #818cf8;
+    outline-offset: 5px;
+}
+
+.account-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    margin-bottom: 22px;
+    border-radius: 18px;
+    font-size: 31px;
+}
+
+.student-icon {
+    background: #eaf2ff;
+}
+
+.mentor-icon {
+    background: #f0eaff;
+}
+
+.account-role {
+    margin-bottom: 10px;
+    color: #7062dc;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.account-choice-card h2 {
+    margin: 0 0 13px;
+    font-size: 25px;
+    color: #172554;
+}
+
+.account-choice-card p {
+    margin: 0 0 25px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.account-card-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    padding: 14px 17px;
+    border: 1px solid #d9d6fe;
+    border-radius: 11px;
+    color: #5145cd;
+    background: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+}
+
+.account-choice-card:hover .account-card-button {
+    border-color: #5145cd;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3b82f6, #6d4aff);
+}
+
+/* Footer */
+
+.account-footer {
+    margin-top: 38px;
+    text-align: center;
+}
+
+.account-footer p {
+    margin: 0 0 8px;
+    color: #5145cd;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.account-footer span {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 650px) {
+    .account-choice-page {
+        width: 90%;
+        padding-top: 20px;
+    }
+
+    .account-heading {
+        margin-bottom: 28px;
+    }
+
+    .account-brand {
+        margin-bottom: 25px;
+    }
+
+    .account-heading h1 {
+        font-size: 29px;
+    }
+
+    .account-subtitle {
+        font-size: 14px;
+    }
+
+    .account-choice-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .account-choice-card {
+        padding: 25px;
+        border-radius: 18px;
+    }
+
+    .account-choice-card h2 {
+        font-size: 23px;
+    }
+
+    .account-footer {
+        margin-top: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .account-choice-card,
+    .account-card-button,
+    .account-type-body .back-link {
+        transition: none;
+    }
+
+    .account-choice-card:hover {
+        transform: none;
+    }
+}
+
+
+
+
+
+
+
+/* =========================
+   MENTOR LOGIN AND SIGNUP
+   Matches Student Login UI
+========================= */
+
+/* Mentor pages use the same background and layout */
+
+.mentor-login-page,
+.mentor-signup-page {
+    min-height: 100vh;
+    background: #f4f7ff;
+    color: #263d59;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+
+.mentor-navbar {
+    min-height: 46px;
+    padding: 12px 35px;
+    background: #ffffff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 35px;
+    box-shadow: 0 2px 10px rgba(25, 45, 85, 0.04);
+}
+
+.mentor-navbar a {
+    color: #102f53;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.mentor-navbar a:hover {
+    color: #7048e8;
+}
+
+/* MAIN AREA */
+
+.mentor-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 16px;
+}
+
+/* MENTOR LOGIN CARD
+   Same width, padding and height behavior as student login */
+
+.mentor-login-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #e9e9f5;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(25, 45, 85, 0.09);
+}
+
+/* MENTOR SIGNUP CARD
+   Same width as the student signup card */
+
+.mentor-signup-card {
+    width: 100%;
+    max-width: 620px;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #e9e9f5;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(25, 45, 85, 0.09);
+}
+
+/* BRAND */
+
+.mentor-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    color: #102f53;
+    font-size: 23px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.mentor-logo {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3678ed, #7048e8);
+    font-size: 14px;
+}
+
+/* HEADINGS */
+
+.mentor-login-card h1,
+.mentor-signup-card h1 {
+    text-align: center;
+    color: #202957;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.mentor-subtitle {
+    text-align: center;
+    color: #858ba5;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* FORM LABELS */
+
+.mentor-login-card label,
+.mentor-signup-card label {
+    display: block;
+    margin: 17px 0 8px;
+    color: #263d59;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* FORM INPUTS */
+
+.mentor-login-card input,
+.mentor-signup-card input,
+.mentor-signup-card textarea,
+.mentor-signup-card select {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #d8deec;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #263d59;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mentor-signup-card textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.mentor-login-card input:focus,
+.mentor-signup-card input:focus,
+.mentor-signup-card textarea:focus,
+.mentor-signup-card select:focus {
+    border-color: #7048e8;
+    box-shadow: 0 0 0 3px rgba(112, 72, 232, 0.1);
+}
+
+/* PASSWORD FIELD */
+
+.mentor-password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.mentor-password-wrapper input {
+    padding-right: 65px;
+}
+
+.mentor-password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #7048e8;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.mentor-password-toggle:hover {
+    color: #3678ed;
+}
+
+/* SIGNUP GRID */
+
+.mentor-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+}
+
+.mentor-form-grid .mentor-full-width {
+    grid-column: 1 / -1;
+}
+
+/* BUTTONS */
+
+.mentor-button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 13px;
+    border: 1px solid #102f53;
+    border-radius: 8px;
+    background: #102f53;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.mentor-button:hover {
+    border-color: #7048e8;
+    background: linear-gradient(110deg, #3678ed, #7048e8);
+    transform: translateY(-1px);
+}
+
+/* FLASH MESSAGES */
+
+.mentor-message {
+    margin-bottom: 15px;
+    padding: 11px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.mentor-message.error {
+    background: #fff0f0;
+    color: #a32020;
+}
+
+.mentor-message.success {
+    background: #eaf8ef;
+    color: #17683b;
+}
+
+.mentor-message.info {
+    background: #edf3ff;
+    color: #2455a4;
+}
+
+/* LOGIN AND SIGNUP LINKS */
+
+.mentor-links {
+    margin-top: 23px;
+    text-align: center;
+    color: #858ba5;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.mentor-links a {
+    color: #7048e8;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.mentor-links a:hover {
+    color: #3678ed;
+    text-decoration: underline;
+}
+
+/* FOOTER */
+
+.mentor-footer {
+    padding: 18px;
+    text-align: center;
+    color: #858ba5;
+    font-size: 11px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 520px) {
+    .mentor-navbar {
+        padding: 12px 18px;
+        gap: 22px;
+    }
+
+    .mentor-navbar a {
+        font-size: 14px;
+    }
+
+    .mentor-main {
+        padding: 24px 12px;
+    }
+
+    .mentor-login-card {
+        padding: 24px 18px;
+    }
+
+    .mentor-signup-card {
+        padding: 22px 16px;
+    }
+
+    .mentor-login-card h1,
+    .mentor-signup-card h1 {
+        font-size: 23px;
+    }
+
+    .mentor-brand {
+        font-size: 20px;
+    }
+
+    .mentor-subtitle {
+        font-size: 12px;
+    }
+
+    .mentor-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mentor-form-grid .mentor-full-width {
+        grid-column: auto;
+    }
+}
+
+/* Mentor signup: match student signup design */
+
+.mentor-signup-page .mentor-signup-card {
+    max-width: 650px;
+}
+
+.mentor-signup-page .step-page[hidden],
+.mentor-signup-page [hidden] {
+    display: none !important;
+}
+
+.mentor-signup-page .step-page h2 {
+    margin-bottom: 20px;
+    color: #292b55;
+    font-size: 20px;
+}
+
+.mentor-signup-page .step-page label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.mentor-signup-page .step-page input,
+.mentor-signup-page .step-page textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mentor-signup-page .step-page input:focus,
+.mentor-signup-page .step-page textarea:focus {
+    outline: none;
+    border-color: #6658d3;
+    box-shadow: 0 0 0 3px rgba(102, 88, 211, 0.12);
+}
+
+.mentor-signup-page .verify-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.mentor-signup-page .verify-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+.mentor-signup-page .verify-button {
+    flex-shrink: 0;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #5145b5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mentor-signup-page .verify-button:hover {
+    background: #392f91;
+}
+
+.mentor-signup-page .verify-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.mentor-signup-page .mobile-send {
+    margin-top: 10px;
+}
+
+.mentor-signup-page .verification-status {
+    margin: 7px 0 12px;
+    font-size: 13px;
+    color: #a52232;
+}
+
+.mentor-signup-page .verification-status.verified {
+    color: #16834a;
+}
+
+.mentor-signup-page .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.mentor-signup-page .back-button,
+.mentor-signup-page .next-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px;
+    padding: 11px 20px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.mentor-signup-page .back-button {
+    border: 1px solid #d5d6e8;
+    background: #fff;
+    color: #5145b5;
+}
+
+.mentor-signup-page .next-button {
+    border: 1px solid #5145b5;
+    background: #5145b5;
+    color: #fff;
+}
+
+.mentor-signup-page .back-button:hover {
+    background: #f1efff;
+}
+
+.mentor-signup-page .next-button:hover {
+    background: #392f91;
+}
+
+.mentor-signup-page .next-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.mentor-signup-page .mentor-back-link {
+    display: block;
+    margin-top: 18px;
+    text-align: center;
+    color: #5145b5;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.mentor-signup-page .mentor-back-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+    .mentor-signup-page .verify-row {
+        flex-wrap: wrap;
+    }
+
+    .mentor-signup-page .verify-row .verify-button {
+        width: 100%;
+    }
+
+    .mentor-signup-page .form-actions {
+        gap: 8px;
+    }
+
+    .mentor-signup-page .back-button,
+    .mentor-signup-page .next-button {
+        padding: 10px 12px;
+    }
+}
+/* FINAL MENTOR SIGNUP ADJUSTMENTS */
+
+.mentor-signup-page .mentor-main {
+    align-items: flex-start;
+    padding: 40px 16px;
+}
+
+.mentor-signup-page .mentor-signup-card {
+    width: 100%;
+    max-width: 620px;
+    padding: 30px;
+}
+
+.mentor-signup-page .mentor-signup-card .step-indicator {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 27px;
+}
+
+.mentor-signup-page .mentor-signup-card .step {
+    flex: 1;
+    text-align: center;
+    padding: 12px 5px;
+    border-radius: 8px;
+    background: #f0edff;
+    color: #7048e8;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.mentor-signup-page .mentor-signup-card .step.active {
+    background: #102f53;
+    color: white;
+}
+
+.mentor-signup-page .mentor-signup-card .privacy-note {
+    margin-top: 18px;
+    padding: 12px;
+    background: #f4f2ff;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.mentor-signup-page .mentor-signup-card [hidden] {
+    display: none !important;
+}
+
+@media (max-width: 520px) {
+    .mentor-signup-page .mentor-main {
+        padding: 24px 12px;
+    }
+
+    .mentor-signup-page .mentor-signup-card {
+        padding: 22px 16px;
+    }
+
+    .mentor-signup-page .mentor-signup-card .step {
+        padding: 10px 3px;
+        font-size: 10px;
+    }
+}

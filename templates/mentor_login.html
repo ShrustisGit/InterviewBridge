@@ -1,0 +1,129 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Login | InterviewBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-page">
+
+<nav class="login-navbar">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About Us</a>
+</nav>
+
+<main class="login-main">
+    <section class="login-card">
+
+        <a href="{{ url_for('home') }}" class="login-brand">
+            <span class="login-logo">IB</span>
+            InterviewBridge
+        </a>
+
+        <h1>Welcome Back, Mentor!</h1>
+
+        <p class="login-subtitle">
+            Log in to share your expertise and guide students
+            toward successful careers.
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, msg in messages %}
+                <div class="login-message {{ category }}" role="status">
+                    {{ msg }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
+        <form action="{{ url_for('mentor_login') }}" method="POST">
+
+            <label for="email">Email Address *</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your registered email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="password">Password *</label>
+
+            <div class="login-password-wrapper">
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="login-password-toggle"
+                    id="togglePassword"
+                    aria-label="Show password"
+                >Show</button>
+            </div>
+
+            <button type="submit" class="login-button">
+                Log In as Mentor
+            </button>
+
+        </form>
+
+        <p class="login-signup">
+            Don't have a mentor account?
+            <a href="{{ url_for('mentor_signup') }}">
+                Create Mentor Account
+            </a>
+        </p>
+
+        <p class="login-signup">
+            Are you a student?
+            <a href="{{ url_for('login') }}">Student Login</a>
+        </p>
+
+    </section>
+</main>
+
+<footer class="login-footer">
+    &copy; 2026 InterviewBridge. All rights reserved.
+</footer>
+
+<script>
+    const passwordInput = document.getElementById("password");
+    const toggleButton = document.getElementById("togglePassword");
+
+    toggleButton.addEventListener("click", function () {
+        const isPassword = passwordInput.type === "password";
+
+        passwordInput.type = isPassword ? "text" : "password";
+        toggleButton.textContent = isPassword ? "Hide" : "Show";
+
+        toggleButton.setAttribute(
+            "aria-label",
+            isPassword ? "Hide password" : "Show password"
+        );
+    });
+
+    // Automatically hide flash messages after 5 seconds.
+    setTimeout(() => {
+        document.querySelectorAll(".login-message").forEach(message => {
+            message.style.transition = "opacity 0.5s";
+            message.style.opacity = "0";
+
+            setTimeout(() => message.remove(), 500);
+        });
+    }, 5000);
+</script>
+
+</body>
+</html>
+```
